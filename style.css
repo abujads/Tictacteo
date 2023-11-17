@@ -1,0 +1,103 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.container-fluid {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-image: url(0x.png);
+  background-color: rgb(27, 27, 27);
+  justify-content: center;
+}
+.container-fluid .mainbox {
+  
+  margin-top: 2%;
+  height: 90vh;
+  width: 45vw;
+  background-color: rgba(174, 170, 170, 0.755);
+  text-align: center; /* Center text horizontally */
+  color: rgb(158, 7, 128); /* Set text color to white */
+  font-size: 200%;
+  font-family: Verdana, sans-serif;
+}
+.container-fluid .mainbox .container {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 10vw);
+  grid-template-rows: repeat(3, 10vw);
+  font-family: Roboto, sans-serif;
+  position: relative;
+}
+.container-fluid .mainbox .container div {
+  border: 2px solid rgb(25, 2, 75);
+  
+}
+.container .box {
+  font-size: 5vw;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box:hover {
+  background-color: rgb(158, 7, 128);
+  color: white;
+}/*# sourceMappingURL=style.css.map */
+
+.container-fluid .mainbox .gameInfo .nd input[type=button] {
+  background-color: rgb(158, 7, 128);
+  color: pink;
+  border: none;
+  border-radius: 1vh;
+  font-family: Georgia, serif;
+  padding: 1%;
+}
+
+.info {
+  font-size: 22px;
+}
+
+.gameInfo{
+  padding: 0 34px;
+  font-family: 'Baloo Bhaina 2', cursive;
+}
+
+.gameInfo h1{
+  font-size: 2.5rem;
+}
+
+.imgbox img{
+  width: 0;
+  transition: width 1s ease-in-out;
+}
+
+
+
+.line{
+  background-color: black;
+  height: 3px;
+  width: 0;
+  position: absolute;
+  background-color: #911d91;
+  transition: width 1s ease-in-out;
+}
+
+@media screen and (max-width: 800px)
+{ 
+  .container-fluid .mainbox{
+    border-radius: 5px;
+    border: 2px solid rgb(158, 7, 128);
+    margin-top: 2%;
+    height: 90vh;
+    width: 100%;
+
+  }
+  .gameInfo{
+    margin-top: 34px;
+  }
+  .container-fluid .mainbox .container { 
+    grid-template-rows: repeat(3, 20vw);
+    grid-template-columns: repeat(3, 20vw);
+  }
+}
