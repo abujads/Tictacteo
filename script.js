@@ -49,6 +49,7 @@ const isAIPlayer = () => {
     return turn === "0" || turn === "1";
 };
 
+
 // Minimax algorithm for AI player
 const minimax = (board, depth, isMaximizing) => {
     let scores = {
@@ -73,7 +74,7 @@ const minimax = (board, depth, isMaximizing) => {
                 bestScore = Math.max(score, bestScore);
             }
         }
-        return bestScore - depth / 10000; // Adjusting the score based on depth and difficulty
+        return bestScore - depth / 100000; // Adjusting the score based on depth and difficulty
     } else {
         let bestScore = Infinity;
         for (let i = 0; i < 9; i++) {
@@ -84,9 +85,11 @@ const minimax = (board, depth, isMaximizing) => {
                 bestScore = Math.min(score, bestScore);
             }
         }
-        return bestScore + depth / 10000; // Adjusting the score based on depth and difficulty
+        return bestScore + depth / 100000; // Adjusting the score based on depth and difficulty
     }
 };
+
+
 
 // AI player's turn
 const aiPlayerTurn = () => {
@@ -94,25 +97,21 @@ const aiPlayerTurn = () => {
         let board = Array.from(document.getElementsByClassName("boxtext")).map(
             (element) => element.innerText
         );
-        let bestMove = -1;
-        let bestScore = -Infinity;
 
-        let difficulty = 1 + totalMoves / 6; // Adjust difficulty dynamically based on total moves
-
-        for (let i = 0; i < 9; i++) {
-            if (board[i] === "") {
-                board[i] = "0";
-                let score = minimax(board, 0, false);
-                board[i] = "";
-                if (score > bestScore) {
-                    bestScore = score;
-                    bestMove = i;
+        // Check if it's the first move of AI
+        if (totalMoves === 1 && isAIPlayer()) {
+            // Make a random move
+            let availableMoves = [];
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === "") {
+                    availableMoves.push(i);
                 }
             }
-        }
 
-        if (bestMove !== -1) {
-            let boxtext = document.getElementsByClassName("boxtext")[bestMove];
+            let randomIndex = Math.floor(Math.random() * availableMoves.length);
+            let randomMove = availableMoves[randomIndex];
+
+            let boxtext = document.getElementsByClassName("boxtext")[randomMove];
             boxtext.innerText = turn;
             turn = changeTurn();
             turnaudio.play();
@@ -120,6 +119,36 @@ const aiPlayerTurn = () => {
             if (!isgameover) {
                 document.getElementsByClassName("info")[0].innerText =
                     "Turn for " + turn;
+            }
+        } else {
+            // Continue with the minimax algorithm
+            let bestMove = -1;
+            let bestScore = -Infinity;
+
+            let difficulty = 1 + totalMoves / 6; // Adjust difficulty dynamically based on total moves
+
+            for (let i = 0; i < 9; i++) {
+                if (board[i] === "") {
+                    board[i] = "0";
+                    let score = minimax(board, 0, false);
+                    board[i] = "";
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestMove = i;
+                    }
+                }
+            }
+
+            if (bestMove !== -1) {
+                let boxtext = document.getElementsByClassName("boxtext")[bestMove];
+                boxtext.innerText = turn;
+                turn = changeTurn();
+                turnaudio.play();
+                checkWin();
+                if (!isgameover) {
+                    document.getElementsByClassName("info")[0].innerText =
+                        "Turn for " + turn;
+                }
             }
         }
     }
