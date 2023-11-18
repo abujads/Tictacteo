@@ -12,7 +12,7 @@
 }
 .container-fluid .mainbox {
   
-  margin-top: 2%;
+  margin-top: ;
   height: 90vh;
   width: 45vw;
   background-color: rgb(255, 255, 255);
@@ -59,7 +59,7 @@
 }
 
 .gameInfo{
-  padding: 0 34px;
+  padding: 0 20px;
   font-family: 'Baloo Bhaina 2', cursive;
 }
 
@@ -87,7 +87,7 @@
 { 
   .container-fluid .mainbox{
     background-color: rgb(255, 255, 255);
-    margin-top: 45%;
+    margin-top: 20vh;
     height: 60vh;
     width: 100%;
 
@@ -95,10 +95,20 @@
 
 
   .gameInfo{
-    margin-top: 34px;
+    margin-top: 0px;
   }
   .container-fluid .mainbox .container { 
     grid-template-rows: repeat(3, 20vw);
     grid-template-columns: repeat(3, 20vw);
   }
+}
+
+.container-fluid .h1 {
+  position: absolute;
+  font-size: medium;
+}
+
+.container-fluid .mainbox .h1 {
+  position: relative;
+  font-size: larger;
 }
