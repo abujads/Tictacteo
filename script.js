@@ -5,6 +5,7 @@ let turnaudio = new Audio("x.wav");
 let gameover = new Audio("go.mp3");
 let turn = "X";
 let isgameover = false;
+let totalMoves = 0;
 
 const changeTurn = () => {
     return turn === "X" ? "0" : "X";
@@ -14,14 +15,14 @@ const changeTurn = () => {
 const checkWin = () => {
     let boxtext = document.getElementsByClassName("boxtext");
     let wins = [
-        [0, 1, 2, 11.5, 5, 0],
-        [3, 4, 5, 11.5, 15, 0],
-        [6, 7, 8, 11.5, 25, 0],
-        [0, 3, 6, 1.5, 15, 90],
-        [1, 4, 7, 11.5, 15, 90],
-        [2, 5, 8, 21.5, 15, 90],
-        [0, 4, 8, 11.5, 15, 45],
-        [2, 4, 6, 11.5, 15, 135],
+        [0, 1, 2, 22.5, 9.5, 0],
+        [3, 4, 5, 20, 29, 0],
+        [6, 7, 8, 22.5, 29, 0],
+        [0, 3, 6, 3, 30, 90],
+        [1, 4, 7, 20, 30,, 90],
+        [2, 5, 8, 43.5, 30, 90],
+        [0, 4, 8, 24, 30, 45],
+        [2, 4, 6, 22, 30, 135],
     ];
     wins.forEach((e) => {
         if (
@@ -32,9 +33,9 @@ const checkWin = () => {
             document.querySelector(".info").innerText =
                 boxtext[e[0]].innerText + " Won";
             isgameover = true;
-            document.querySelector(".line").style.transform = `translate(${e[3]}%, ${e[4]}%) rotate(${e[5]}deg)`;
+            document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`
 
-            document.querySelector(".line").style.width = "22vw";
+            document.querySelector(".line").style.width = "50%";
             gameover.play();
             setTimeout(() => {
                 alert(boxtext[e[0]].innerText + " Won");
@@ -96,6 +97,8 @@ const aiPlayerTurn = () => {
         let bestMove = -1;
         let bestScore = -Infinity;
 
+        let difficulty = 1 + totalMoves / 6; // Adjust difficulty dynamically based on total moves
+
         for (let i = 0; i < 9; i++) {
             if (board[i] === "") {
                 board[i] = "0";
@@ -132,6 +135,8 @@ Array.from(boxes).forEach((element) => {
             boxtext.innerText = turn;
             turn = changeTurn();
             turnaudio.play();
+            totalMoves++;
+
             checkWin();
             if (!isgameover) {
                 document.getElementsByClassName("info")[0].innerText =
@@ -152,6 +157,7 @@ reset.addEventListener("click", () => {
     });
     turn = "X";
     isgameover = false;
+    totalMoves = 0;
     document.querySelector(".line").style.width = "0vw";
     document.getElementsByClassName("info")[0].innerText =
         "Turn for " + turn;
