@@ -15,9 +15,9 @@
   margin-top: 2%;
   height: 90vh;
   width: 45vw;
-  background-color: rgba(174, 170, 170, 0.755);
+  background-color: rgb(255, 255, 255);
   text-align: center; /* Center text horizontally */
-  color: rgb(158, 7, 128); /* Set text color to white */
+  color: rgb(20, 7, 158); /* Set text color to white */
   font-size: 200%;
   font-family: Verdana, sans-serif;
 }
@@ -41,15 +41,15 @@
   justify-content: center;
 }
 .box:hover {
-  background-color: rgb(158, 7, 128);
+  background-color: rgb(20, 7, 158);
   color: white;
 }/*# sourceMappingURL=style.css.map */
 
 .container-fluid .mainbox .gameInfo .nd input[type=button] {
-  background-color: rgb(158, 7, 128);
-  color: pink;
+  background-color: rgb(20, 7, 158);
+  color: rgb(255, 255, 255);
   border: none;
-  border-radius: 1vh;
+  border-radius: 10%;
   font-family: Georgia, serif;
   padding: 1%;
 }
@@ -86,13 +86,14 @@
 @media screen and (max-width: 800px)
 { 
   .container-fluid .mainbox{
-    border-radius: 5px;
-    border: 2px solid rgb(158, 7, 128);
-    margin-top: 2%;
-    height: 90vh;
+    background-color: rgb(255, 255, 255);
+    margin-top: 45%;
+    height: 60vh;
     width: 100%;
 
   }
+
+
   .gameInfo{
     margin-top: 34px;
   }
