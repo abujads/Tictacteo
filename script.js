@@ -50,7 +50,8 @@ const isAIPlayer = () => {
 };
 
 
-// Minimax algorithm for AI player
+
+// Minimax algorithm for AI player with extreme difficulty
 const minimax = (board, depth, isMaximizing) => {
     let scores = {
         X: -1,
@@ -74,7 +75,7 @@ const minimax = (board, depth, isMaximizing) => {
                 bestScore = Math.max(score, bestScore);
             }
         }
-        return bestScore - depth / 100000; // Adjusting the score based on depth and difficulty
+        return bestScore - depth / 1000000; // Adjusting the score based on depth and extreme difficulty
     } else {
         let bestScore = Infinity;
         for (let i = 0; i < 9; i++) {
@@ -85,9 +86,10 @@ const minimax = (board, depth, isMaximizing) => {
                 bestScore = Math.min(score, bestScore);
             }
         }
-        return bestScore + depth / 100000; // Adjusting the score based on depth and difficulty
+        return bestScore + depth / 1000000; // Adjusting the score based on depth and extreme difficulty
     }
 };
+
 
 
 
